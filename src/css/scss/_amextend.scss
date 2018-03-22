@@ -1,0 +1,30 @@
+.am-para-label {
+    width: 110px;
+
+    font-weight: normal;
+    line-height: 37px;
+    text-align: right;
+}
+
+.am-para-input {
+	display:block;
+    margin-left: 115px;
+}
+
+.am-para-inline{
+	float:left;
+	margin-left:5px;
+}
+
+.am-form-horizontal {
+    .am-para-label {
+        float: left;
+    }
+}
+
+.am-table-bordered tbody>tr:first-child>td {
+    border-top: none !important;
+}
+.am-form label{
+    font-weight:normal; 
+}
