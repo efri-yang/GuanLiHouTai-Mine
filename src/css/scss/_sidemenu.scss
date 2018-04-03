@@ -117,7 +117,7 @@
                 }
             }
             &.treeview {
-                &.active{
+                &.hactive{
                     >a {
                         .more {
                             transform: rotate(90deg);
@@ -160,10 +160,13 @@
             }
         }
         >li {
-            &.active {
+            &.active,&.current{
                 >a {
                     background-color: #5FB878;
                     color:#fff;
+                    .txt{
+                        color:#fff;
+                    }
                 }
             }
         }
