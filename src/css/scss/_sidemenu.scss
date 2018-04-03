@@ -103,7 +103,7 @@
                     border-left-color: #fff;
                     border-left-color: rgba(255, 255, 255, .7);
                 }
-                &:hover {
+                &:hover{
                     background-color: #5FB878; // background:#00c1de;
                     .layui-icon {
                         color: #fff;
@@ -153,6 +153,14 @@
                             >a {
 
                                 color: #fff;
+                                .txt{
+                                    color:#fff; 
+                                    font-weight:bold; 
+                                }
+                                .iconfont{
+                                    color:#fff; 
+                                    
+                                }
                             }
                         }
                     }
@@ -161,11 +169,12 @@
         }
         >li {
             &.active,&.current{
+
                 >a {
                     background-color: #5FB878;
                     color:#fff;
                     .txt{
-                        color:#fff;
+                        color:#fff !important;
                     }
                 }
             }
