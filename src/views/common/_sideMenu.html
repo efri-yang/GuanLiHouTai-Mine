@@ -3,7 +3,7 @@
     <div class="aside-unfold"><i class="iconfont f18">&#xe6d4;</i></div>
     <div class="aside-menu-scroll">
         <ul class="aside-menu">
-            <li class="treeview active hactive">
+            <li class="treeview active toggleactive">
                 <a href="javascript:void(0)" data-tip="榜单管理">
                     <i class="iconfont f14">&#xe65d;</i>
                     <span class="txt">榜单管理</span>
@@ -13,7 +13,7 @@
                     <li>
                         <a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14"></i><span class="txt">榜单管理1-1</span></a>
                     </li>
-                    <li class="treeview active hactive">
+                    <li class="treeview active toggleactive">
                         <a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                              <i class="iconfont f14">&#xe65d;</i>
                             <span class="txt">榜单管理1-2</span>
@@ -26,23 +26,21 @@
                             <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-4</span></a></li>
                         </ul>
                     </li>
-                    <li class="current"><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-3</span></a></li>
+                    <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-3</span></a></li>
                     <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-4</span></a></li>
                 </ul>
             </li>
 
-            <li class="current">
+            <li>
                 <a href="javascript:void(0)" data-tip="榜单管理">
                     <i class="iconfont f14">&#xe65d;</i>
                     <span class="txt">榜单管理</span>
                     <span class="more"></span> 
                 </a>
-               
             </li>
         </ul>
     </div>
 </div>
-<!-- side  end****************************************************** -->
 <script type="text/javascript">
 (function($) {
     $(function() {
@@ -54,10 +52,10 @@
             $(el).on("click", function() {
                 var $this = $(this);
                 $parent = $this.parent("li");
-                if ($parent.hasClass('hactive')) {
-                    $parent.removeClass('hactive');
+                if ($parent.hasClass('toggleactive')) {
+                    $parent.removeClass('toggleactive');
                 } else {
-                    $parent.addClass('hactive');
+                    $parent.addClass('toggleactive');
                 }
             })
         });
@@ -68,9 +66,10 @@
             }else{
                 $aside.addClass('fold');
                 $body.addClass('unfold');
-                $aside.find(".treeview").removeClass('hactive');
+                $aside.find(".treeview").removeClass('toggleactive');
             }
         })
     })
 })(jQuery)
 </script>
+<!-- side  end****************************************************** -->

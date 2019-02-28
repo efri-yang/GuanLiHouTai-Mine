@@ -117,14 +117,14 @@
                 }
             }
             &.treeview {
-                &.hactive{
+                &.toggleactive{
                     >a {
                         .more {
                             transform: rotate(90deg);
                         }
                     }
                 }
-                &.hactive{
+                &.toggleactive{
                     >.treeview-menu{
                         display:block;
                     }
