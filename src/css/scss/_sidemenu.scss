@@ -149,7 +149,7 @@
                     border-left-color: rgba(255, 255, 255, .7);
                 }
                 &:hover{
-                    background-color: #5FB878; // background:#00c1de;
+                    background-color:lighten(#4E5465,5%);
                     .layui-icon {
                         color: #fff;
                     }
@@ -216,7 +216,7 @@
             &.active,&.current{
 
                 >a {
-                    background-color: #5FB878;
+                    background-color: lighten(#4E5465,10%);
                     color:#fff;
                     .txt{
                         color:#fff !important;
