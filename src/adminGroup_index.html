@@ -71,14 +71,13 @@
                     <thead>
                         <tr>
                             <th width="50">
-                                <input type="checkbox" data-roler="check_all" >
+                                <input type="checkbox" data-roler="check_all">
                             </th>
                             <th width="10%"><span>ID</span></th>
                             <th width="15%"><span>角色名称</span></th>
                             <th width="15%"><span>描述</span></th>
                             <th width="10%"><span>是否启用</span></th>
                             <th><span>操作</span></th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -166,7 +165,6 @@
                                 <a href="#" class="am-btn am-btn-danger am-btn-xs">删除</a>
                             </td>
                         </tr>
-
                         <tr>
                             <td><input type="checkbox" name="checkbox_for_id"></td>
                             <td>01</td>
@@ -205,38 +203,38 @@
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr><td colspan="6">
-                            
-                            <div class="coms-table-ft clearfix">
-                    <div class="hander am-form">
-                        <label class="checkall">
-                            <input type="checkbox" data-roler="check_all" >全选</label>
-                        <div class="am-para-inline w120">
-                            <select>
-                                <option>批量操作</option>
-                                <option>删除</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="coms-pagination fr mr20">
-                        <span class="total">共100条数据</span>
-                        <a href="#" class="first">首页</a>
-                        <span class="first disabled">首页</span>
-                        <a href="#" class="prev">上一页</a>
-                        <span class="prev disabled">上一页</span>
-                        <a href="#" class="num">1</a>
-                        <span class="more">...</span>
-                        <a href="#" class="num">4</a>
-                        <a href="#" class="num">5</a>
-                        <span class="num current">6</span>
-                        <a href="#" class="num">7</a>
-                        <a href="#" class="num">8</a>
-                        <span class="more">...</span>
-                        <a href="#" class="num">20</a>
-                        <a href="#" class="next">下一页</a>
-                        <span class="next disabled">下一页</span>
-                        <span class="last disabled">末页</span>
-                        <span class="sel">
+                        <tr>
+                            <td colspan="6">
+                                <div class="coms-table-ft clearfix">
+                                    <div class="hander am-form">
+                                        <label class="checkall">
+                                            <input type="checkbox" data-roler="check_all">全选</label>
+                                        <div class="am-para-inline w120">
+                                            <select>
+                                                <option>批量操作</option>
+                                                <option>删除</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="coms-pagination fr mr20">
+                                        <span class="total">共100条数据</span>
+                                        <a href="#" class="first">首页</a>
+                                        <span class="first disabled">首页</span>
+                                        <a href="#" class="prev">上一页</a>
+                                        <span class="prev disabled">上一页</span>
+                                        <a href="#" class="num">1</a>
+                                        <span class="more">...</span>
+                                        <a href="#" class="num">4</a>
+                                        <a href="#" class="num">5</a>
+                                        <span class="num current">6</span>
+                                        <a href="#" class="num">7</a>
+                                        <a href="#" class="num">8</a>
+                                        <span class="more">...</span>
+                                        <a href="#" class="num">20</a>
+                                        <a href="#" class="next">下一页</a>
+                                        <span class="next disabled">下一页</span>
+                                        <span class="last disabled">末页</span>
+                                        <span class="sel">
                             <select>
                                 <option value="10" selected="">10 条/页</option>
                                 <option value="20">20 条/页</option>
@@ -245,89 +243,89 @@
                                 <option value="50">50 条/页</option>
                             </select>
                         </span>
-                        <span class="skip">到第<input type="text" min="1" value="6">页<button type="button">确定</button></span>
-                    </div>
-                </div>
-                        </td></tr>
+                                        <span class="skip">到第<input type="text" min="1" value="6">页<button type="button">确定</button></span>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                     </tfoot>
                 </table>
-
-               
             </div>
         </div>
         <!-- 
 *****内容开始end**************************************************
  -->
+        <script type="text/javascript">
+        $(function() {
 
- <script type="text/javascript">
-        $(function(){
-
-            function handleSingleCheckbox($checkIds){
-                var flag=true;
-                $.each($checkIds,function(index,el){
-                    if(!$(el).prop("checked")){
-                        flag=false;
+            function handleSingleCheckbox($checkIds) {
+                var flag = true;
+                $.each($checkIds, function(index, el) {
+                    if (!$(el).prop("checked")) {
+                        flag = false;
                         return flag;
                     }
                 })
                 return flag;
             }
 
-            $.fn.checkboxToggle=function(option){
+            $.fn.checkboxToggle = function(options) {
                 var opt = $.extend(true, {}, $.fn.checkboxToggle.defaultConfig, options);
-                return this.each(function (index, el) {
+                return this.each(function(index, el) {
+
                     var $this = $(el);
-                    var $checkAll=$this.find(opt.checkAllSelector);
-                    var $checkIds=$this.find(opt.checkSingleSelector)
+
+                    var $checkAll = $this.find(opt.checkAllSelector);
+
+                    var $checkIds = $this.find(opt.checkSingleSelector)
+                    $checkIds.each(function(index, el) {
+                        $(el).on("click", function() {
+
+                            var isCheck = handleSingleCheckbox($checkIds);
+                            if (isCheck) {
+                                $checkAll.prop("checked", true);
+                            } else {
+                                $checkAll.prop("checked", false);
+                            }
+                            $.isFunction(opt.callback) &&  opt.callback.call($this,$checkIds)
+                        });
+
+                    })
+                    $checkAll.on("click", function() {
+                        var $this = $(this);
+                        if ($this.prop("checked")) {
+                            $checkAll.prop("checked", true);
+                            $checkIds.prop("checked", true);
+                        } else {
+                            $checkAll.prop("checked", false);
+                            $checkIds.prop("checked", false);
+                        }
+                        $.isFunction(opt.callback) &&  opt.callback.call($this,$checkIds)
+
+                    })
+
+                })
 
 
-                }
+
             }
-
             $.fn.checkboxToggle.defaultConfig = {
-                 checkAllSelector:'[data-roler="check_all"]',
-                 checkSingleSelector:'input[name="checkbox_for_id"]'
+                checkAllSelector: '[data-roler="check_all"]',
+                checkSingleSelector: 'input[name="checkbox_for_id"]',
+                callback:function(){}
             };
 
 
-            var $checkAll=$('[data-roler="check_all"]');
-            var $checkId=$('input[name="checkbox_for_id"]');
-
-            function handleSingleCheckbox($checkIds){
-                var flag=true;
-                $.each($checkIds,function(index,el){
-                    if(!$(el).prop("checked")){
-                        flag=false;
-                        return flag;
-                    }
-                })
-                return flag;
-            }
-            $checkId.each(function(index,el){
-                $(el).on("click",function(){
-                    var isCheck=handleSingleCheckbox($checkId);
-                    if(isCheck){
-                        $checkAll.prop("checked",true);
-                    }else{
-                        $checkAll.prop("checked",false);
-                    }
-                })
-            })
-            $checkAll.on("click",function(){
-                var $this=$(this);
-                if($this.prop("checked")){
-                    $checkAll.prop("checked",true);
-                    $checkId.prop("checked",true);
-                }else{
-                    $checkAll.prop("checked",false);
-                    $checkId.prop("checked",false);
+            $(".am-table").checkboxToggle({
+                callback:function($checkboxSingle){
+                    alert(this.html())
                 }
-                
-            })
+            });
+
+
+
         })
-
-
- </script>
+        </script>
     </div>
 </body>
 
