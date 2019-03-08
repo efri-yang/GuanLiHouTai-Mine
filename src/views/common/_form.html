@@ -1,34 +1,156 @@
 <script type="text/javascript" src="js/plugin/webuploader-0.1.5/webuploader.min.js"></script>
 <link rel="stylesheet" type="text/css" href="js/plugin/webuploader-0.1.5/webuploader.css" />
 <form action="" class="am-form am-form-horizontal" data-am-validator>
-  
+
     <div class="am-form-group">
-      <label class="am-para-label">用户名：</label>
-      <div class="am-para-input"><input type="text"  minlength="3" placeholder="输入用户名(至少 3 个字符)" required /></div>
+        <label class="am-para-label">用户名：</label>
+        <div class="am-para-input"><input type="text" minlength="3" placeholder="输入用户名(至少 3 个字符)" required /></div>
     </div>
     <div class="am-form-group">
-      <label class="am-para-label">密码：</label>
-      <div class="am-para-input"><input type="text"  placeholder="请输入密码" required/></div>
+        <label class="am-para-label">密码：</label>
+        <div class="am-para-input"><input type="text" placeholder="请输入密码" required /></div>
     </div>
 
     <div class="am-form-group">
-      <label class="am-para-label">邮箱：</label>
-      <div class="am-para-input"><input type="email"  placeholder="邮箱" required/></div>
+        <label class="am-para-label">邮箱：</label>
+        <div class="am-para-input"><input type="email" placeholder="邮箱" required /></div>
     </div>
 
+
     <div class="am-form-group">
-      <label class="am-para-label">封面图片(头像):</label>
-      <div class="am-para-input">
-        <div class="coms-upload-single-box">
+        <label class="am-para-label">邮箱：</label>
+        <div class="am-para-input">
+            <div class="coms-plupload-container">
+                <div class="coms-plupload-nofile"></div>
+                <ul class="coms-upload-list clearfix">
+                </ul>
+                <div class="coms-btn-choice  clearfix">
+                    <a id="J_pickfiles1" class="btn-pickfiles" href="javascript:;">选择文件</a>
+                    <a href="javascript:void(0);" class="btn-startload-file">上传文件</a>
+                    <a href="javascript:void(0);" class="btn-stopload-file">暂停上传</a>
+                </div>
+                <input type="hidden" name="plupload01[]" id="J_plupload01">
+                <button class="btn-1">改变选项值(初始化参数值)</button>
+            </div>
+        </div>
+        <script>
+            function arrayHandler(dataList) {
+
+this.dataStore = dataList;
+this.dataStoreOld=JSON.parse(JSON.stringify(dataList));
+this.listSize = dataList.length;
+}
+arrayHandler.prototype.find = function(key, value) {
+for (var i = 0; i < this.dataStore.length; i++) {
+    if (this.dataStore[i][key] == value) {
+        return i;
+    }
+}
+return -1;
+}
+arrayHandler.prototype.remove = function(key, value) {
+var foundAt = this.find(key,value);
+if (foundAt > -1) {
+    this.dataStore.splice(foundAt, 1);
+    --this.listSize;
+    return true;
+}
+return false;
+}
+
+arrayHandler.prototype.append = function(value) {
+this.dataStore[this.listSize++] = value;
+}
+
+
+
+arrayHandler.prototype.splice = function(key, value,replaceKey,replaceVal) {
+var foundAt = this.find(key,value);
+if (foundAt > -1) {
+    this.dataStore[foundAt][replaceKey]=replaceVal;
+}
+}
+arrayHandler.prototype.arrToStr = function(key) {
+    var arr = [];
+    for (var i = 0; i < this.dataStore.length; i++) {
+        arr.push(this.dataStore[i][key]);
+    }
+    return arr.join("|");
+}
+
+
+$(function() {
+var $up1Hidden = $("#J_plupload01");
+var up1DataHandler = new arrayHandler([]);
+var uploader1 = $("#J_pickfiles1").plupload({
+    delSLBtn: true,
+    type: 1,
+
+    filters: {
+        max_file_count: 2
+    },
+    uploadInfo: {
+        required: true,
+        container: ""
+    },
+    multipart_params: {
+        uid: 10
+    },
+    initLoad: function(up) {
+        up.$container.find(".btn-1").on("click", function() {
+            var params = up.getOption("multipart_params");
+            params["test"] = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+            up.setOption({
+                "multipart_params": params,
+                "filters": {
+                    max_file_count: 1
+                }
+            });
+            console.dir(up.settings);
+        });
+    },
+    //每个文件上传成功触发回调函数
+    fileUploaded: function(file, response) {
+        response.data.id = file.id;
+        up1DataHandler.append(response.data);
+        $up1Hidden.val(up1DataHandler.arrToStr("path"))
+
+        console.dir(up1DataHandler.dataStore);
+
+    },
+    //每个文件删除以后触发回调函数
+    fileRemoved: function(file) {
+        up1DataHandler.remove("id", file.id);
+        $up1Hidden.val(up1DataHandler.arrToStr("path"))
+        console.dir(up1DataHandler.dataStore)
+    },
+    //plupload 执行全部的上传事件后触发该函数，只触发一次
+    uploadComplete: function(up, files) {
+
+    }
+});
+
+});
+
+        </script>
+    </div>
+
+
+
+
+    <div class="am-form-group">
+        <label class="am-para-label">封面图片(头像):</label>
+        <div class="am-para-input">
+            <div class="coms-upload-single-box">
                 <div class="no-pic" id="J_no-pic"></div>
                 <ul class="uploading-img-list clearfix" id="J_uploader-list">
                 </ul>
                 <div class="upload-btn-group clearfix">
                     <div id="filePicker" class="filepicker-container"></div>
                 </div>
-        </div>
-        <script type="text/javascript">
-            var uploader = WebUploader.create({
+            </div>
+            <script type="text/javascript">
+                var uploader = WebUploader.create({
                     pick: {
                         id: '#filePicker',
                         label: '点击上传本地头像'
@@ -47,14 +169,14 @@
                     fileNumLimit: 1,
                     fileSizeLimit: 4 * 1024 * 1024
                 });
-        </script>
-      </div>
+            </script>
+        </div>
     </div>
 
     <div class="am-form-group">
-      <label class="am-para-label">封面图片(头像)-上传步骤: </label>
-      <div class="am-para-input">
-         <div class="coms-upload-single-box">
+        <label class="am-para-label">封面图片(头像)-上传步骤: </label>
+        <div class="am-para-input">
+            <div class="coms-upload-single-box">
                 <ul class="uploading-img-list clearfix" id="J_uploader-list">
                     <li>
                         <div class="img-wrap preview">预览中...</div>
@@ -124,8 +246,8 @@
                     </li>
                 </ul>
             </div>
-        <script type="text/javascript">
-            var uploader = WebUploader.create({
+            <script type="text/javascript">
+                var uploader = WebUploader.create({
                     pick: {
                         id: '#filePicker',
                         label: '点击上传本地头像'
@@ -144,76 +266,76 @@
                     fileNumLimit: 1,
                     fileSizeLimit: 4 * 1024 * 1024
                 });
-        </script>
-      </div>
+            </script>
+        </div>
     </div>
 
     <div class="am-form-group">
-      <label class="am-para-label">选择框：</label>
-      <div class="am-para-input">
-          <select required name="pro">
-            <option value="">请选择</option>
-            <option value="option1">选项一...</option>
-            <option value="option2">选项二.....</option>
-            <option value="option3" disabled>选项三........</option>
-          </select>
-      </div>
+        <label class="am-para-label">选择框：</label>
+        <div class="am-para-input">
+            <select required name="pro">
+                <option value="">请选择</option>
+                <option value="option1">选项一...</option>
+                <option value="option2">选项二.....</option>
+                <option value="option3" disabled>选项三........</option>
+            </select>
+        </div>
     </div>
 
     <div class="am-form-group">
-      <label class="am-para-label">选择框：</label>
-      <div class="am-para-inline w150 mr10">
-          <select required name="province">
-            <option value="">省</option>
-            <option value="option1">选项一...</option>
-            <option value="option2">选项二.....</option>
-            <option value="option3" disabled>选项三........</option>
-          </select>
-      </div>
-      <div class="am-para-inline w150 mr10">
-          <select required name="city">
-            <option value="">市</option>
-            <option value="option1">选项一...</option>
-            <option value="option2">选项二.....</option>
-            <option value="option3" disabled>选项三........</option>
-          </select>
-      </div>
-      <div class="am-para-inline w150 mr10">
-          <select required name="district">
-            <option value="">区</option>
-            <option value="option1">选项一...</option>
-            <option value="option2">选项二.....</option>
-            <option value="option3" disabled>选项三........</option>
-          </select>
-      </div>
+        <label class="am-para-label">选择框：</label>
+        <div class="am-para-inline w150 mr10">
+            <select required name="province">
+                <option value="">省</option>
+                <option value="option1">选项一...</option>
+                <option value="option2">选项二.....</option>
+                <option value="option3" disabled>选项三........</option>
+            </select>
+        </div>
+        <div class="am-para-inline w150 mr10">
+            <select required name="city">
+                <option value="">市</option>
+                <option value="option1">选项一...</option>
+                <option value="option2">选项二.....</option>
+                <option value="option3" disabled>选项三........</option>
+            </select>
+        </div>
+        <div class="am-para-inline w150 mr10">
+            <select required name="district">
+                <option value="">区</option>
+                <option value="option1">选项一...</option>
+                <option value="option2">选项二.....</option>
+                <option value="option3" disabled>选项三........</option>
+            </select>
+        </div>
     </div>
     <div class="am-form-group">
-      <label class="am-para-label">文本域：</label>
-      <div class="am-para-input">
-           <textarea  rows="5" minlength="2" maxlength="100000" required></textarea>
-      </div>
+        <label class="am-para-label">文本域：</label>
+        <div class="am-para-input">
+            <textarea rows="5" minlength="2" maxlength="100000" required></textarea>
+        </div>
     </div>
     <div class="am-form-group">
-      <label class="am-para-label">编辑器：</label>
-      <div class="am-para-input">
-          <textarea id="container"  required name="content" type="text/plain">这里写你的初始化内容
+        <label class="am-para-label">编辑器：</label>
+        <div class="am-para-input">
+            <textarea id="container" required name="content" type="text/plain">这里写你的初始化内容
           </textarea>
-          <script type="text/javascript" src="js/plugin/ueditor/ueditor.config.js"></script>
-          <!-- 编辑器源码文件 -->
-          <script type="text/javascript" src="js/plugin/ueditor/ueditor.all.js"></script>
-          <!-- 实例化编辑器 -->
-          <script type="text/javascript">
-          var ue = UE.getEditor('container');
-          </script>
-      </div>
+            <script type="text/javascript" src="js/plugin/ueditor/ueditor.config.js"></script>
+            <!-- 编辑器源码文件 -->
+            <script type="text/javascript" src="js/plugin/ueditor/ueditor.all.js"></script>
+            <!-- 实例化编辑器 -->
+            <!-- <script type="text/javascript">
+                var ue = UE.getEditor('container');
+            </script> -->
+        </div>
     </div>
     <div class="am-form-group">
         <label class="am-para-label"></label>
         <div class="am-para-input"><button class="am-btn am-btn-secondary" type="submit">提交</button></div>
-        
+
     </div>
-    
-  
+
+
 </form>
 
 

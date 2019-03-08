@@ -162,6 +162,12 @@
         tbody {
             td {
                word-break:break-all; word-wrap:break-all;
+               &.pl-0{
+                    padding-left:0;
+               }
+               &.pr-0{
+                    padding-right:0;
+               }
             }
         }
     }
@@ -170,9 +176,6 @@
 
 
 .coms-table-ft {
-    border-left: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-    border-right: 1px solid #ddd;
     padding: 15px 0;
     .hander {
         padding-left: 20px;
@@ -265,5 +268,19 @@
                 cursor: not-allowed!important;
             }
         }
+    }
+}
+
+.coms-table-nodata{
+    border:1px dashed #ddd;
+    text-align:center;
+    padding:60px 0;
+    color:#999;
+    line-height:30px;
+    i{
+        font-size:30px;
+        display:inline-block;
+        vertical-align:middle;
+        margin:-1px 5px 0 0;
     }
 }

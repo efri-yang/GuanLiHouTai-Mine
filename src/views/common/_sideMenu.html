@@ -10,89 +10,105 @@
             <li class="treeview active toggleactive">
                 <a href="javascript:void(0)" data-tip="榜单管理">
                     <i class="iconfont f14">&#xe65d;</i>
-                    <span class="txt">榜单管理</span>
-                    <span class="more"></span> 
+                    <span class="txt">菜单管理</span>
+                    <span class="more"></span>
                 </a>
                 <ul class="treeview-menu">
                     <li>
-                        <a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14"></i><span class="txt">榜单管理1-1</span></a>
+                        <a href="index.html"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14"></i><span
+                                class="txt">首页</span></a>
                     </li>
+                    <li>
+                        <a href="adminUser_profile.html"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14"></i><span
+                                class="txt">个人资料</span></a>
+                    </li>
+                    <li>
+                        <a href="adminGroup_index.html"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14"></i><span
+                                class="txt">角色管理</span></a>
+                    </li>
+                    <li>
+                            <a href="adminGroup_add.html"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14"></i><span
+                                    class="txt">添加角色</span></a>
+                        </li>
                     <li class="treeview active toggleactive">
                         <a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                             <i class="iconfont f14">&#xe65d;</i>
+                            <i class="iconfont f14">&#xe65d;</i>
                             <span class="txt">榜单管理1-2</span>
-                            <span class="more"></span> 
+                            <span class="more"></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li class="current"><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-1</span></a></li>
-                            <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-2</span></a></li>
-                            <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-3</span></a></li>
-                            <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-4</span></a></li>
+                            <li class="current"><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i
+                                        class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-1</span></a></li>
+                            <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i
+                                        class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-2</span></a></li>
+                            <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i
+                                        class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-3</span></a></li>
+                            <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><i
+                                        class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-2-4</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-3</span></a></li>
-                    <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span class="txt">榜单管理1-4</span></a></li>
+                    <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span
+                                class="txt">榜单管理1-3</span></a></li>
+                    <li><a href="#"><span class="fl">&nbsp;&nbsp;&nbsp;&nbsp;</span><i class="iconfont f14">&#xe65d;</i><span
+                                class="txt">榜单管理1-4</span></a></li>
                 </ul>
             </li>
 
-            <li>
-                <a href="javascript:void(0)" data-tip="榜单管理">
-                    <i class="iconfont f14">&#xe65d;</i>
-                    <span class="txt">榜单管理</span>
-                    <span class="more"></span> 
-                </a>
-            </li>
+
+
+
         </ul>
     </div>
 </div>
 <script type="text/javascript">
-(function($) {
-    $(function() {
-        var $a = $(".aside-menu").find('.treeview').children('a');
-        var $parent;
-        var $aside=$(".coms-layout-aside");
-        var $body=$("#J_coms-layout-body");
-        $.each($a, function(index, el) {
-            $(el).on("click", function() {
-                var $this = $(this);
-                $parent = $this.parent("li");
-                if ($parent.hasClass('toggleactive')) {
-                    $parent.removeClass('toggleactive');
+    (function ($) {
+        $(function () {
+            var $a = $(".aside-menu").find('.treeview').children('a');
+            var $parent;
+            var $aside = $(".coms-layout-aside");
+            var $body = $("#J_coms-layout-body");
+            $.each($a, function (index, el) {
+                $(el).on("click", function () {
+                    var $this = $(this);
+                    $parent = $this.parent("li");
+                    if ($parent.hasClass('toggleactive')) {
+                        $parent.removeClass('toggleactive');
+                    } else {
+                        $parent.addClass('toggleactive');
+                    }
+                })
+            });
+            $(".aside-unfold").on("click", function () {
+                if ($aside.hasClass('fold')) {
+                    $aside.removeClass('fold');
+                    $body.removeClass('unfold');
                 } else {
-                    $parent.addClass('toggleactive');
+                    $aside.addClass('fold');
+                    $body.addClass('unfold');
+                    $aside.find(".treeview").removeClass('toggleactive');
+                }
+            });
+        });
+        $(function () {
+            var $keyInput = $("#J_aside-search-key");
+            var $seachBox = $("#J_aside-search");
+            $("#J_aside-search-entry").on("click", function () {
+                var $this = $(this),
+                    $parent = $this.parent();
+                var val = $keyInput.val();
+                if ($parent.hasClass("toggleactive") && !val) {
+                    $parent.removeClass("toggleactive");
+                } else {
+                    $parent.addClass("toggleactive");
+                }
+            });
+            $(document).on("click", function (event) {
+                var $target = $(event.target);
+                if (!$target.closest($seachBox).length) {
+                    $seachBox.removeClass("toggleactive");
                 }
             })
-        });
-        $(".aside-unfold").on("click",function(){
-            if($aside.hasClass('fold')){
-                $aside.removeClass('fold');
-                $body.removeClass('unfold');
-            }else{
-                $aside.addClass('fold');
-                $body.addClass('unfold');
-                $aside.find(".treeview").removeClass('toggleactive');
-            }
-        });
-    });
-    $(function(){
-        var $keyInput=$("#J_aside-search-key");
-        var $seachBox=$("#J_aside-search");
-        $("#J_aside-search-entry").on("click",function(){
-            var $this=$(this),$parent=$this.parent();
-            var val=$keyInput.val();
-            if($parent.hasClass("toggleactive") && !val){
-                $parent.removeClass("toggleactive");
-            }else{
-                $parent.addClass("toggleactive");
-            }
-        });
-        $(document).on("click",function(event){
-            var $target=$(event.target);
-            if(!$target.closest($seachBox).length){
-               $seachBox.removeClass("toggleactive");
-            }
         })
-    })
-})(jQuery)
+    })(jQuery)
 </script>
 <!-- side  end****************************************************** -->

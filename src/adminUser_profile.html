@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>个人信息</title>
+  @@include("./views/common/_headStyleScript.html")
+</head>
+
+<body>
+  @@include("./views/common/_header.html") @@include("./views/common/_sideMenu.html")
+  <div class="coms-layout-body p15" id="J_coms-layout-body">
+    @@include("./views/common/_breadcrumb.html",{"title":"个人资料"})
+    <!-- 
+*****内容开始start**************************************************
+ -->
+    <div class="am-g mt30">
+      <div class="am-u-sm-4">
+        <div class="am-text-center">
+          <img class="am-circle" src="http://s.amazeui.org/media/i/demos/bw-2014-06-19.jpg?imageView/1/w/1000/h/1000/q/80"
+            width="200" height="200" />
+          <p class="am-text-lg mt15">超级管理员-昵称</p>
+          <p class="am-text-default">admin-用户名</p> 
+        </div>
+      </div>
+      <div class="am-u-sm-8">
+        <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+          <ul class="am-tabs-nav coms-tab-title type-1">
+            <li class="am-active"><a href="#tab1">个人信息</a></li>
+            <li class=""><a href="#tab2">密码修改</a></li>
+            <li class=""><a href="#tab3">头像修改</a></li>
+          </ul>
+
+          <div class="am-tabs-bd am-tabs-bd-ofv no-border">
+            <div class="am-tab-panel am-active am-in mt25" id="tab1">
+              <div class="am-u-sm-8">
+                <form action="" class="am-form am-form-horizontal" data-roler="ajax-form" data-am-validator>
+                  <div class="am-form-group">
+                    <label class="am-para-label">账号：</label>
+                    <div class="am-para-input"><input type="text" name="name" value="11" minlength="3" placeholder="输入账号" required /></div>
+                  </div>
+                  <div class="am-form-group">
+                    <label class="am-para-label">昵称(姓名)：</label>
+                    <div class="am-para-input"><input type="text"  value="22" name="nickname" placeholder="请输入昵称" required /></div>
+                  </div>
+                  <div class="am-form-group">
+                    <label class="am-para-label">手机：</label>
+                    <div class="am-para-input"><input type="text"  value="18559160494" name="mobile" placeholder="请输入手机号" required /></div>
+                  </div>
+
+                  <div class="am-form-group">
+                    <label class="am-para-label">邮箱：</label>
+                    <div class="am-para-input"><input type="email" value="1@qq.com" name="email" placeholder="请输入邮箱" required /></div>
+                  </div> 
+                  <div class="am-form-group">
+                    <label class="am-para-label"></label>
+                    <div class="am-para-input"><button class="am-btn am-btn-secondary" type="submit">保存</button></div>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="am-tab-panel mt25" id="tab2">
+              <div class="am-u-sm-8">
+                <form action="" class="am-form am-form-horizontal" data-am-validator>
+                  <div class="am-form-group">
+                    <label class="am-para-label">当前密码：</label>
+                    <div class="am-para-input"><input type="text" minlength="3" placeholder="输入用户名(至少 3 个字符)" required /></div>
+                  </div>
+                  <div class="am-form-group">
+                    <label class="am-para-label">新密码：</label>
+                    <div class="am-para-input"><input type="text" placeholder="请输入密码" required /></div>
+                  </div>
+                  <div class="am-form-group">
+                    <label class="am-para-label">确认新密码：</label>
+                    <div class="am-para-input"><input type="text" placeholder="请输入密码" required /></div>
+                  </div>
+                  <div class="am-form-group">
+                    <label class="am-para-label"></label>
+                    <div class="am-para-input"><button class="am-btn am-btn-secondary" type="submit">保存</button></div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+            <div class="am-tab-panel mt25" id="tab3">
+              <form action="" class="am-form am-form-horizontal" data-am-validator>
+                <div class="am-form-group">
+
+                  <div class="am-para-input">
+                    <div class="coms-plupload-container">
+                      <ul class="coms-upload-list clearfix">
+                        <li class="item-upload-btn">
+                          <a href="#" class="btn-pickfiles" id="J_pickfiles2"></a>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </div>
+                <div class="am-form-group">
+                  <label class="am-para-label"></label>
+                  <div class="am-para-input"><button class="am-btn am-btn-secondary w150" type="submit">保存</button></div>
+                </div>
+              </form>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 
+*****内容开始end**************************************************
+ -->
+  </div>
+</body>
+
+</html>
