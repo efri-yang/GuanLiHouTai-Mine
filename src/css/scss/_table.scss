@@ -176,7 +176,7 @@
 
 
 .coms-table-ft {
-    padding: 15px 0;
+    padding:8px 0;
     .hander {
         padding-left: 20px;
         .checkall {
@@ -282,5 +282,45 @@
         display:inline-block;
         vertical-align:middle;
         margin:-1px 5px 0 0;
+    }
+}
+
+
+.coms-table-ft{
+    .coms-pagination-default{
+       float:right;
+    }
+}
+
+.coms-pagination-default{
+    li{
+        float:left;
+       
+       
+        a{
+            display:block; 
+            width:30px;
+            heiht:30px; 
+            line-height:30px;
+
+            &:hover{
+              color:darken(#0e90d2,20%);
+              transform:scale(1.2);
+            } 
+               
+        }
+        span{
+            display:block; 
+            width:20px;
+            height:30px; 
+            line-height:30px;
+        }
+        &:first-child,&:last-child{
+            &.disabled{
+                a,span{
+                     color:#d2d2d2;
+                    }
+            }
+        }
     }
 }
