@@ -30,3 +30,52 @@
     }
     
 }
+
+
+
+
+.access-list{
+    margin-top:25px;
+    li{
+
+        .item-caption{
+            padding:0 15px;
+            height:35px;
+            line-height:35px;
+            background:#ECECEC;
+        }
+        label{
+            margin:0 25px 0 0;
+        }
+    }
+    >li{
+        border:1px solid #e5e5e5;
+        margin-bottom:15px;
+    }
+    .ipt-checkbox{
+        margin:0 5px 0 0;
+        display:inlibne-block;
+    }
+
+    .treeview-list{
+        
+       
+        margin:5px 20px;
+        padding:5px;
+        position:relative;
+        li{
+          
+            label{
+                font-size:14px;
+                font-weight:normal;
+            }
+        }
+        &.last{
+            border:1px solid #e5e5e5;
+           
+            li{
+                float:left;
+            }  
+        }
+    }
+}
