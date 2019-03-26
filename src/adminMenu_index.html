@@ -175,7 +175,6 @@
                     var $checkIds = $that.find(opt.checkSingleSelector)
                     $checkIds.each(function(index, el) {
                         $(el).on("click", function() {
-
                             var isCheck = handleSingleCheckbox($checkIds);
                             if (isCheck) {
                                 $checkAll.prop("checked", true);
